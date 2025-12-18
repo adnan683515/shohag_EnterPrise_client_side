@@ -1,23 +1,44 @@
-import React, { type ReactNode } from 'react';
-import { AuthContext } from './AuthContext';
+import { type ReactNode, useState } from "react";
+import { AuthContext, type TUser } from "./AuthContext";
 
-interface Authprops {
-    children: ReactNode
+interface AuthProps {
+    children: ReactNode;
 }
 
-const Authprovider = ({ children }: Authprops) => {
 
+const AuthProvider = ({ children }: AuthProps) => {
+    const [user, setUser] = useState<TUser | null>(null);
 
+    const [token, setToken] = useState<string | null>(null);
+    
+    const [loading, setLoading] = useState<boolean>(false);
 
-    const contextInformation = {
-        name: "Adnan"
-    }
+    const setAuthData = (user: TUser, token: string) => {
+        setUser(user);
+        setToken(token);
+        setLoading(false);
+    };
+
+    const logout = () => {
+        setUser(null);
+        setToken(null);
+    };
 
     return (
-        <AuthContext value={contextInformation}>
+        <AuthContext.Provider
+            value={{
+                user,
+                token,
+                isAuthenticated: !!token,
+                loading,
+                setAuthData,
+                logout,
+                setLoading,
+            }}
+        >
             {children}
-        </AuthContext>
+        </AuthContext.Provider>
     );
 };
 
-export default Authprovider;
+export default AuthProvider;
