@@ -14,7 +14,9 @@ export interface AuthContextType {
     loading: boolean;
 
     setAuthData: (user: TUser, token: string) => void;
+
     setLoading: (value: boolean) => void;
+    
     logout: () => void;
 }
 
