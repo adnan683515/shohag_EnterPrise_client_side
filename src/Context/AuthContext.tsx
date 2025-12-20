@@ -5,18 +5,18 @@ export type TUser = {
     email: string;
     role: "admin" | "user" | "subadmin";
     isVerified: boolean;
+    tokens: string
 };
 
 export interface AuthContextType {
     user: TUser | null;
-    token: string | null;
-    isAuthenticated: boolean;
+
     loading: boolean;
 
-    setAuthData: (user: TUser, token: string) => void;
+    setAuthData: (user: TUser,) => void;
 
     setLoading: (value: boolean) => void;
-    
+
     logout: () => void;
 }
 
