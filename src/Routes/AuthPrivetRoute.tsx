@@ -6,14 +6,15 @@ interface Props {
     children: ReactNode;
 }
 
-
-const PrivateRoute = ({ children }: Props) => {
+const AuthPrivetRoute = ({ children }: Props) => {
     const user = ReduxAuthHoook();
 
-    if (!user) {
-        return <Navigate to="/" />;
+    // user already logged in
+    if (user) {
+        return <Navigate to="/deshboard" replace />;
     }
+
     return <>{children}</>;
 };
 
-export default PrivateRoute;
+export default AuthPrivetRoute;
