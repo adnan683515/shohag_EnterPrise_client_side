@@ -1,8 +1,12 @@
 import { createBrowserRouter } from "react-router";
 import Login from "../components/Auth/Login";
 import SignUp from "../components/Auth/SignUp";
-import MainLayout from "../Layout/MainLayout";
+
 import Deshboard from "../components/Deshboard/Deshboard/Deshboard";
+import PrivateRoute from './PrivateRoute';
+import DeshboardHome from "../components/Deshboard/Deshboard/DeshboardHome";
+import TodayTransection from "../components/Transection/TodayTransection";
+
 
 
 export const route = createBrowserRouter([
@@ -14,11 +18,16 @@ export const route = createBrowserRouter([
         Component: SignUp
     }, {
         path: '/deshboard',
-        Component: MainLayout,
+        element: <PrivateRoute>
+            <DeshboardHome></DeshboardHome>
+        </PrivateRoute>,
         children: [
             {
                 path: '/deshboard',
                 Component: Deshboard
+            }, {
+                path: '/deshboard/TTransection',
+                Component : TodayTransection
             }
         ]
     }

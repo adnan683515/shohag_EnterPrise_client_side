@@ -1,13 +1,15 @@
-import React from 'react';
-import AuthHook from '../../../Hooks/AuthHook';
+import ReduxAuthHoook from "../../../Hooks/ReduxAuthHoook";
+
 
 const Deshboard = () => {
 
 
-    const userInfo = AuthHook()
-    console.log(userInfo)
 
-    
+    const user = ReduxAuthHoook()
+    console.log(user)
+
+
+
     return (
         <div>
             desh board home page

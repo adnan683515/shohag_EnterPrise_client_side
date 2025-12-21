@@ -7,6 +7,7 @@ interface AuthProps {
 
 
 const AuthProvider = ({ children }: AuthProps) => {
+    
     const [user, setUser] = useState<TUser | null>(null);
 
     

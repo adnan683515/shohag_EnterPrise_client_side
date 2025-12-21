@@ -1,9 +1,10 @@
 import Button from "../../shared/Button";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import Label from "../../shared/Label";
 import { useForm } from "react-hook-form";
 import { axiosUrl } from "../../axois/axiosUrl";
-import AuthHook from "../../Hooks/AuthHook";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/authSlice";
 
 type TRegisterData = {
   email: string;
@@ -13,25 +14,26 @@ type TRegisterData = {
 const Login = () => {
 
 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<TRegisterData>();
 
-  const { setAuthData, user } = AuthHook()
-
-
 
 
   const onSubmit = async (data: TRegisterData) => {
     try {
+
       const loginResponse = await axiosUrl.post("/api/user/login", {
         email: data.email,
         password: data.password,
       });
 
-      console.log("FULL RESPONSE:", loginResponse.data);
+
 
       if (loginResponse.data.status === "success") {
         const resultinfo = {
@@ -42,9 +44,8 @@ const Login = () => {
           tokens: loginResponse.data.data.tokens.accessToken,
         };
 
-        console.log("AUTH DATA:", resultinfo);
-
-        setAuthData(resultinfo);
+        dispatch(setUser(resultinfo))
+        navigate('/deshboard')
       }
     } catch (err) {
       console.log(err);
@@ -52,7 +53,6 @@ const Login = () => {
   };
 
 
-  console.log(user)
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#025964] to-[#013a3f] px-4 sm:px-6 lg:px-8">
@@ -86,6 +86,7 @@ const Login = () => {
             <Label text="Email Address" htmlFor="email" required />
             <input
               type="email"
+              defaultValue={"golamfaruk680@gmail.com"}
               placeholder="you@example.com"
               {...register("email", {
                 required: "Email is required",
@@ -105,6 +106,7 @@ const Login = () => {
             <Label text="Password" htmlFor="password" required />
             <input
               type="password"
+              defaultValue={"Admin@123"}
               placeholder="••••••••"
               {...register("password", {
                 required: "Password is required",
