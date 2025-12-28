@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { axiosUrl } from "../../axois/axiosUrl";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/authSlice";
+import { useState } from "react";
+import ToasSuccess from "../Loader/ToasSuccess";
 
 type TRegisterData = {
   email: string;
@@ -16,6 +18,7 @@ const Login = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -26,15 +29,14 @@ const Login = () => {
 
 
   const onSubmit = async (data: TRegisterData) => {
+
+    setLoading(true)
     try {
 
       const loginResponse = await axiosUrl.post("/api/user/login", {
         email: data.email,
         password: data.password,
       });
-
-
-
       if (loginResponse.data.status === "success") {
         const resultinfo = {
           name: loginResponse.data.data.user.name,
@@ -46,9 +48,13 @@ const Login = () => {
 
         dispatch(setUser(resultinfo))
         navigate('/deshboard')
+        ToasSuccess({title : 'Login successfully!'})
       }
     } catch (err) {
       console.log(err);
+    }
+    finally {
+      setLoading(false)
     }
   };
 
@@ -142,7 +148,7 @@ const Login = () => {
           </div>
 
           {/* Button */}
-          <Button type="submit" text="Login" />
+          <Button loading={loading} type="submit" text="Login" />
         </form>
 
         <p className="text-center text-sm text-gray-600 mt-6">

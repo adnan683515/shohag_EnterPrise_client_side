@@ -5,7 +5,8 @@ export type TUser = {
     email: string;
     role: "admin" | "user" | "subadmin";
     isVerified: boolean;
-    tokens: string
+    tokens?: string;
+    refreshToken?: string;
 };
 
 export interface AuthContextType {

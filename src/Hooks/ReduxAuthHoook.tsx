@@ -6,7 +6,6 @@ const ReduxAuthHoook = () => {
 
     const userInfo = useSelector((state: RootState) => state.auth.user)
 
-
     return userInfo;
 };
 

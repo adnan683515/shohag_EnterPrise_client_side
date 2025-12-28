@@ -11,10 +11,11 @@ import {
 } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../redux/authSlice";
+import ToastError from "../../Loader/ToastError";
 
 const menuItems = [
     { name: "Dashboard", path: "/", icon: <Home size={20} /> },
-    { name: "Tody Transection", path: "/deshboard/TTransection", icon: <Home size={20} /> },
+    { name: "Transection", path: "/deshboard/Transection", icon: <Home size={20} /> },
     { name: "Profile", path: "/profile", icon: <User size={20} /> },
     { name: "Analytics", path: "/analytics", icon: <BarChart2 size={20} /> },
     { name: "Settings", path: "/settings", icon: <Settings size={20} /> },
@@ -28,6 +29,7 @@ const DeshboardHome = () => {
     const handleLogout = () => {
         disptach(logout())
         navigate("/");
+        ToastError({title : 'Logout successfully!'})
     };
 
     return (
@@ -72,9 +74,9 @@ const DeshboardHome = () => {
 
                             <button
                                 onClick={handleLogout}
-                                className="w-full flex items-center gap-2 px-6 py-4 text-red-300 hover:bg-red-500/10"
+                                className="w-full flex  items-center gap-2 px-6 py-4 text-red-300 hover:bg-red-500/10"
                             >
-                                <LogOut size={18} />
+                                <LogOut className="cursor-pointer" size={18} />
                                 Logout
                             </button>
                         </div>

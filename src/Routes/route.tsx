@@ -5,9 +5,9 @@ import SignUp from "../components/Auth/SignUp";
 import Deshboard from "../components/Deshboard/Deshboard/Deshboard";
 import PrivateRoute from './PrivateRoute';
 import DeshboardHome from "../components/Deshboard/Deshboard/DeshboardHome";
-import TodayTransection from "../components/Transection/TodayTransection";
 import AuthPrivetRoute from "./AuthPrivetRoute";
 import OTP_page from "../components/Auth/OTP_page";
+import Transection from "../components/Transection/Transection";
 
 
 
@@ -39,8 +39,8 @@ export const route = createBrowserRouter([
                 path: '/deshboard',
                 Component: Deshboard
             }, {
-                path: '/deshboard/TTransection',
-                Component: TodayTransection
+                path: '/deshboard/Transection',
+                Component: Transection
             }
         ]
     }

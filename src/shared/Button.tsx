@@ -1,3 +1,4 @@
+import { Loader } from "lucide-react";
 import React from "react";
 
 type ButtonProps = {
@@ -17,6 +18,7 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   className = "",
 }) => {
+
   return (
     <button
       type={type}
@@ -36,30 +38,19 @@ const Button: React.FC<ButtonProps> = ({
         disabled:opacity-50
         disabled:cursor-not-allowed
         text-sm
+        cursor-pointer
         sm:text-base
         md:text-lg
-        group
+
         ${className}
       `}
     >
-   
-      <span
-        className="
-          absolute
-          top-0
-          left-0
-          h-full
-          w-0
-          
-          bg-black
-          transition-all
-          duration-700
-          group-hover:w-full
-        "
-      />
-      <span className="relative z-10">
-        {loading ? "Loading..." : text}
-      </span>
+
+      <div className="relative z-10">
+        {loading ? <div className="flex justify-center items-center">
+          <Loader className="text-black animate-spin" />
+        </div> : text}
+      </div>
 
       
     </button>
