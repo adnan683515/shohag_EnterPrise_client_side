@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { Outlet, useNavigate } from "react-router";
 import {
     Home,
@@ -19,6 +19,7 @@ const menuItems = [
     { name: "Profile", path: "/profile", icon: <User size={20} /> },
     { name: "Analytics", path: "/analytics", icon: <BarChart2 size={20} /> },
     { name: "Settings", path: "/settings", icon: <Settings size={20} /> },
+    { name: "Add Transection", path: "/deshboard/AddTransection", icon: <Settings size={20} /> }
 ];
 
 const DeshboardHome = () => {
@@ -29,7 +30,7 @@ const DeshboardHome = () => {
     const handleLogout = () => {
         disptach(logout())
         navigate("/");
-        ToastError({title : 'Logout successfully!'})
+        ToastError({ title: 'Logout successfully!' })
     };
 
     return (
@@ -126,7 +127,7 @@ const DeshboardHome = () => {
             </aside>
 
             {/* ============ MAIN CONTENT ============ */}
-            <main className="pt-16 lg:pt-0 lg:pl-64 px-4 min-h-screen max-h-screen bg-orange-100 border border-black">
+            <main className="pt-16 lg:pt-0 lg:pl-64 px-2 min-h-screen max-h-screen bg-orange-100 border border-black">
                 <Outlet />
             </main>
         </div>

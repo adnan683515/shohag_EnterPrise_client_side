@@ -8,6 +8,7 @@ import DeshboardHome from "../components/Deshboard/Deshboard/DeshboardHome";
 import AuthPrivetRoute from "./AuthPrivetRoute";
 import OTP_page from "../components/Auth/OTP_page";
 import Transection from "../components/Transection/Transection";
+import AddTransetion from "../components/AddTransection/AddTransetion";
 
 
 
@@ -41,6 +42,9 @@ export const route = createBrowserRouter([
             }, {
                 path: '/deshboard/Transection',
                 Component: Transection
+            },{
+                path : "/deshboard/AddTransection",
+                Component : AddTransetion
             }
         ]
     }

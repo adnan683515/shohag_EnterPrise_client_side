@@ -1,4 +1,5 @@
 import ReduxAuthHoook from "../../../Hooks/ReduxAuthHoook";
+import Transection from "../../Transection/Transection";
 
 
 const Deshboard = () => {
@@ -12,7 +13,7 @@ const Deshboard = () => {
 
     return (
         <div>
-            desh board home page
+            <Transection></Transection>
         </div>
     );
 };
